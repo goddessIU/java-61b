@@ -74,6 +74,9 @@ public class ArrayDeque<T> {
         nextBack = this.size - 1;
     }
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         T ret = get(items);
         nextFront = (nextFront + 1) % capcity;
         items = (items + 1) % capcity;
@@ -86,6 +89,9 @@ public class ArrayDeque<T> {
         return ret;
     }
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
         T ret = get((nextBack - 1 + capcity) % capcity);
         nextBack = (nextBack - 1 + capcity) % capcity;
         size--;

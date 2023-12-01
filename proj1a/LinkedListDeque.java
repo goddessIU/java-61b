@@ -50,6 +50,12 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
+        if (size == 0) {
+            return null;
+        }
+        if (index < 0 || index >= size) {
+            return null;
+        }
         Node<T> tmp = front;
         for (int i = 0; i < index; i++) {
             tmp = tmp.getNext();
@@ -58,6 +64,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         T ret = front.getVal();
         if (size == 1) {
             back = null;
@@ -72,6 +81,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
         T ret = back.getVal();
         if (size == 1) {
             back = null;
@@ -118,6 +130,12 @@ public class LinkedListDeque<T> {
     }
 
     private T getRecursiveHelper(int index, Node<T> item) {
+        if (size == 0) {
+            return null;
+        }
+        if (index < 0 || index >= size) {
+            return null;
+        }
         if (index == 0) {
             return item.getVal();
         }
