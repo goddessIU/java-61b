@@ -102,6 +102,6 @@ public class ArrayDeque<T> {
         return ret;
     }
     public T get(int index) {
-        return arr[index];
+        return arr[(index + items) % capcity];
     }
 }
