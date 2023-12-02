@@ -95,6 +95,12 @@ public class ArrayDequeTest {
             lld1.addFirst(i);
         }
         for (int i = 0; i < num; i++) {
+            System.out.println(lld1.removeLast());
+        }
+        for (int i = 0; i < num; i++) {
+            lld1.addFirst(i);
+        }
+        for (int i = 0; i < num; i++) {
             System.out.println(lld1.get(i));
         }
     }

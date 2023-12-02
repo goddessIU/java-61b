@@ -78,7 +78,7 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-        T ret = get(items);
+        T ret = get(0);
         nextFront = (nextFront + 1) % capcity;
 
         size--;
@@ -98,7 +98,7 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-        T ret = get((nextBack - 1 + capcity) % capcity);
+        T ret = get(size - 1);
         nextBack = (nextBack - 1 + capcity) % capcity;
         size--;
 
