@@ -22,8 +22,8 @@ public class ArrayDeque<T> {
         capcity = capcity * 2;
         this.arr = tmpArr;
         items = 0;
-        nextFront = 0;
-        nextBack = this.size - 1;
+        nextFront = capcity - 1;
+        nextBack = this.size;
     }
     public void addFirst(T item) {
         this.arr[nextFront] = item;
@@ -37,6 +37,9 @@ public class ArrayDeque<T> {
 
     public void addLast(T item) {
         this.arr[nextBack] = item;
+        if (size == 0) {
+            nextFront = capcity - 1;
+        }
         size++;
         nextBack = (nextBack + 1) % capcity;
         if (nextBack == nextFront) {
@@ -56,11 +59,9 @@ public class ArrayDeque<T> {
     private T[] copyArr(int cap) {
         T[] tmpArr = (T[])new Object[cap];
         int j = 0;
-        for (int i = items; i < capcity; i++) {
-            tmpArr[j++] = this.arr[i];
-        }
-        for (int i = 0; i < nextFront; i++) {
-            tmpArr[j++] = this.arr[i];
+        int k = items;
+        for (int i = 0; i < size; i++) {
+            tmpArr[j++] = this.arr[(k + i) % capcity];
         }
         return tmpArr;
     }
@@ -79,8 +80,13 @@ public class ArrayDeque<T> {
         }
         T ret = get(items);
         nextFront = (nextFront + 1) % capcity;
-        items = (items + 1) % capcity;
+
         size--;
+        if (size == 0) {
+            items = 0;
+        } else {
+            items = (items + 1) % capcity;
+        }
 
         if (size > 8 && size < (capcity / 4)) {
             shrinkSize();
@@ -102,6 +108,9 @@ public class ArrayDeque<T> {
         return ret;
     }
     public T get(int index) {
+        if (size == 0) {
+            return null;
+        }
         return arr[(index + items) % capcity];
     }
 }
