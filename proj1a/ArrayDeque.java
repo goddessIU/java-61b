@@ -28,6 +28,9 @@ public class ArrayDeque<T> {
     public void addFirst(T item) {
         this.arr[nextFront] = item;
         items = nextFront;
+        if (size == 0) {
+            nextBack = (nextBack + 1) % capcity;
+        }
         size++;
         nextFront = (nextFront - 1 + capcity) % capcity;
         if (nextBack == nextFront) {
@@ -38,7 +41,7 @@ public class ArrayDeque<T> {
     public void addLast(T item) {
         this.arr[nextBack] = item;
         if (size == 0) {
-            nextFront = capcity - 1;
+            nextFront = (items - 1 + capcity) % capcity;
         }
         size++;
         nextBack = (nextBack + 1) % capcity;
@@ -80,8 +83,12 @@ public class ArrayDeque<T> {
         }
         T ret = get(0);
         nextFront = (nextFront + 1) % capcity;
-
         size--;
+        if (size == 0) {
+            nextBack = 0;
+        }
+
+
         if (size == 0) {
             items = 0;
         } else {
@@ -102,6 +109,9 @@ public class ArrayDeque<T> {
         nextBack = (nextBack - 1 + capcity) % capcity;
         size--;
 
+        if (size == 0) {
+            nextFront = 0;
+        }
         if (size > 8 && size < (capcity / 4)) {
             shrinkSize();
         }

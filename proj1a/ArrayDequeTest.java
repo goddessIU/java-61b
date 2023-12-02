@@ -90,19 +90,23 @@ public class ArrayDequeTest {
         passed = checkEmpty(false, lld1.isEmpty()) && passed;
         lld1.removeFirst();
         passed = checkEmpty(true, lld1.isEmpty()) && passed;
-        int num = 20;
-        for (int i = 0; i  < num; i++) {
-            lld1.addFirst(i);
-        }
-        for (int i = 0; i < num; i++) {
-            System.out.println(lld1.removeLast());
-        }
-        for (int i = 0; i < num; i++) {
-            lld1.addFirst(i);
-        }
-        for (int i = 0; i < num; i++) {
-            System.out.println(lld1.get(i));
-        }
+//        int num = 20;
+//        for (int i = 0; i  < num; i++) {
+//            lld1.addFirst(i);
+//        }
+//        for (int i = 0; i < num; i++) {
+//            System.out.println(lld1.removeLast());
+//        }
+//        for (int i = 0; i < num; i++) {
+//            lld1.addFirst(i);
+//        }
+//        for (int i = 0; i < num; i++) {
+//            System.out.println(lld1.get(i));
+//        }
+        lld1.addFirst(0);
+        System.out.println(lld1.removeLast());
+        lld1.addLast(2);
+        System.out.println(lld1.get(0));
     }
 
     public static void main(String[] args) {
