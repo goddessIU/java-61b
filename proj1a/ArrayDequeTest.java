@@ -85,28 +85,52 @@ public class ArrayDequeTest {
     public static void check1() {
         System.out.println("check1");
         ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
-        boolean passed = checkEmpty(true, lld1.isEmpty());
-        lld1.addFirst(10);
-        passed = checkEmpty(false, lld1.isEmpty()) && passed;
-        lld1.removeFirst();
-        passed = checkEmpty(true, lld1.isEmpty()) && passed;
-//        int num = 20;
+//        boolean passed = checkEmpty(true, lld1.isEmpty());
+//        lld1.addFirst(10);
+//        passed = checkEmpty(false, lld1.isEmpty()) && passed;
+//        lld1.removeFirst();
+//        passed = checkEmpty(true, lld1.isEmpty()) && passed;
+//        int num = 300;
 //        for (int i = 0; i  < num; i++) {
 //            lld1.addFirst(i);
 //        }
-//        for (int i = 0; i < num; i++) {
+//        for (int i = 0; i < num - 20; i++) {
 //            System.out.println(lld1.removeLast());
 //        }
-//        for (int i = 0; i < num; i++) {
-//            lld1.addFirst(i);
-//        }
-//        for (int i = 0; i < num; i++) {
+////        for (int i = 0; i < num; i++) {
+////            lld1.addFirst(i);
+////        }
+//        for (int i = 0; i < 20; i++) {
 //            System.out.println(lld1.get(i));
 //        }
+//        lld1.addFirst(0);
+//        System.out.println(lld1.removeLast());
+//        lld1.addLast(2);
+//        System.out.println(lld1.get(0));
         lld1.addFirst(0);
+        lld1.addLast(1);
+        lld1.addFirst(2);
+        lld1.addFirst(3);
         System.out.println(lld1.removeLast());
-        lld1.addLast(2);
-        System.out.println(lld1.get(0));
+        System.out.println(lld1.removeLast());
+        lld1.addLast(6);
+        lld1.get(0);
+        lld1.addLast(8);
+        lld1.removeLast()  ;
+        lld1.removeLast()  ;
+        lld1.removeLast()  ;
+        lld1.removeFirst() ;
+        lld1.addFirst(13);
+        lld1.removeLast() ;
+        lld1.addFirst(15);
+        lld1.addLast(16);
+        lld1.get(0)      ;
+        lld1.get(1)      ;
+        lld1.removeFirst()    ;
+        lld1.removeFirst()   ;
+        lld1.addFirst(21);
+        lld1.addLast(22);
+        System.out.println(lld1.removeLast());;
     }
 
     public static void main(String[] args) {

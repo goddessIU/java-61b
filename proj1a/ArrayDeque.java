@@ -85,12 +85,12 @@ public class ArrayDeque<T> {
         nextFront = (nextFront + 1) % capcity;
         size--;
         if (size == 0) {
-            nextBack = 0;
+            nextBack = nextFront;
         }
 
 
         if (size == 0) {
-            items = 0;
+            items = nextFront;
         } else {
             items = (items + 1) % capcity;
         }
