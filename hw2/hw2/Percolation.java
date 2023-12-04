@@ -18,6 +18,9 @@ public class Percolation {
     private int[][] Directions = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
     // create N-by-N grid, with all sites initially blocked
     public Percolation(int N)     {
+        if (N <= 0) {
+            throw  new IllegalArgumentException();
+        }
         this.N = N;
         sz = new int[N][N];
         arr = new int[N][N];
@@ -110,7 +113,6 @@ public class Percolation {
         int[] pos2 = getPos(root2);
 
         if (root1 == startNum) {
-            System.out.println("startNum is " + startNum + " sz:  "  + startSz);
             if (startSz < sz[pos2[0]][pos2[1]]) {
                 sz[pos2[0]][pos2[1]] += startSz;
                 startPar = getNum(pos2[0], pos2[1]);
@@ -135,11 +137,6 @@ public class Percolation {
                 arr[pos2[0]][pos2[1]] = arr[pos1[0]][pos1[1]];
             }
         }
-        boolean res = isConnected(row, col, nRow, nCol);
-        if (res) {
-            System.out.println("co");
-        } else
-        System.out.println("dd");
     }
 
     private int getNum(int row, int col) {
@@ -169,7 +166,6 @@ public class Percolation {
         if (isOpen(row, col)) {
             return;
         }
-        System.out.println("open: " + row + " " + col);
 
         openNum++;
         int pos = getNum(row, col);
@@ -185,7 +181,9 @@ public class Percolation {
 
         if (row == 0) {
             connect(startPos[0], startPos[1], row, col);
-        } else if (row == N - 1) {
+        }
+
+        if (row == N - 1) {
             connect(row, col, endPos[0], endPos[1]);
         }
 
