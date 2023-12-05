@@ -27,24 +27,21 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      * Returns the index of the node to the left of the node at i.
      */
     private static int leftIndex(int i) {
-        /* TODO: Your code here! */
-        return 0;
+        return 2 * i;
     }
 
     /**
      * Returns the index of the node to the right of the node at i.
      */
     private static int rightIndex(int i) {
-        /* TODO: Your code here! */
-        return 0;
+        return 2 * i + 1;
     }
 
     /**
      * Returns the index of the node that is the parent of the node at i.
      */
     private static int parentIndex(int i) {
-        /* TODO: Your code here! */
-        return 0;
+        return i / 2;
     }
 
     /**
@@ -107,8 +104,21 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         // Throws an exception if index is invalid. DON'T CHANGE THIS LINE.
         validateSinkSwimArg(index);
 
-        /** TODO: Your code here. */
-        return;
+        while (true) {
+            int par = parentIndex(index);
+            if (par < 1 || index < 1) {
+                break;
+            }
+
+            if (contents[index].priority() < contents[par].priority()) {
+                Node temp = this.contents[index];
+                this.contents[index] = this.contents[parentIndex(index)];
+                this.contents[parentIndex(index)] = temp;
+                index = parentIndex(index);
+            } else {
+                break;
+            }
+        }
     }
 
     /**
@@ -118,8 +128,33 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         // Throws an exception if index is invalid. DON'T CHANGE THIS LINE.
         validateSinkSwimArg(index);
 
-        /** TODO: Your code here. */
-        return;
+        while (true) {
+            int left = leftIndex(index);
+            int right = rightIndex(index);
+            if (left > size  || index > size) {
+                break;
+            }
+            int change = -1;
+            double leftPri = contents[left].priority();
+            int pri = -1;
+            if (right > size) {
+                pri = left;
+            } else {
+                double rightPri = contents[right].priority();
+                pri = (leftPri <rightPri) ? left : right;
+            }
+
+            if (contents[index].priority() >contents[pri].priority()) {
+                change = pri;
+            }
+            if (change == -1) {
+                break;
+            }
+            Node temp = contents[index];
+            contents[index] = contents[change];
+            contents[change] = temp;
+            index = change;
+        }
     }
 
     /**
@@ -133,7 +168,9 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
             resize(contents.length * 2);
         }
 
-        /* TODO: Your code here! */
+        size++;
+        contents[size] = new Node(item, priority);
+        swim(size);
     }
 
     /**
@@ -142,8 +179,10 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     @Override
     public T peek() {
-        /* TODO: Your code here! */
-        return null;
+        if (size == 0) {
+            return null;
+        }
+        return contents[1].item();
     }
 
     /**
@@ -157,8 +196,22 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     @Override
     public T removeMin() {
-        /* TODO: Your code here! */
-        return null;
+        if (size == 0) {
+            return null;
+        }
+
+        if (size == 1) {
+            T ret = contents[1].item();
+            size--;
+            contents[1] = null;
+            return ret;
+        }
+
+        swap(1, size);
+        size--;
+        sink(1);
+
+        return contents[size+1].item();
     }
 
     /**
@@ -180,8 +233,11 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     @Override
     public void changePriority(T item, double priority) {
-        /* TODO: Your code here! */
-        return;
+        for (int i = 1; i <= size; i++) {
+            if (contents[i].item().equals(item)) {
+                contents[i] = new Node(item, priority);
+            }
+        }
     }
 
     /**
