@@ -26,7 +26,7 @@ public class Percolation {
         arr = new int[N][N];
 
         startSz = 0;
-        endSz = 0;
+        endSz = -(int)Math.pow(N, 3);
         startNum = -2;
         endNum = -3;
         startPar = startNum;
