@@ -76,8 +76,9 @@ public class Board implements WorldState {
         return total;
     }
     private int getDiff(int num, int row, int col) {
-        int cCol = num % tiles.length;
-        int cRow = num / tiles.length;
+        int t = num - 1;
+        int cCol = t % tiles.length;
+        int cRow = t / tiles.length;
         int h = Math.abs(cRow - row) + Math.abs(cCol - col);
 //        System.out.println(h);
         return h;
