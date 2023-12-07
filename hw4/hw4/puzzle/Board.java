@@ -75,8 +75,8 @@ public class Board implements WorldState {
         }
         return total;
     }
-    public int getDiff(int num, int row, int col) {
-        int cCol = num % tiles.length - 1;
+    private int getDiff(int num, int row, int col) {
+        int cCol = num % tiles.length;
         int cRow = num / tiles.length;
         int h = Math.abs(cRow - row) + Math.abs(cCol - col);
 //        System.out.println(h);
@@ -86,16 +86,21 @@ public class Board implements WorldState {
         int total = 0;
         int t = 1;
         for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles.length; j++, t++) {
+            int cols = tiles.length;
+            for (int j = 0; j < cols; j++) {
                 if (tiles[i][j] == 0) {
+                    t++;
                     continue;
                 }
                 if (tiles[i][j] == t) {
+                    t++;
                     continue;
                 }
+                t++;
                 total += getDiff(tiles[i][j], i, j);
             }
         }
+//        System.out.println(total);
         return total;
     }
     public int estimatedDistanceToGoal() {
