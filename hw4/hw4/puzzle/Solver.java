@@ -38,6 +38,7 @@ public class Solver {
             }
 
             for (WorldState temp : node.state.neighbors()) {
+//                System.out.println(temp);
                 if (isRedundent(node,temp)) {
                     continue;
                 }
