@@ -70,6 +70,15 @@ public class QuickSort {
         Queue<Item> greater = new Queue<>();
         Item pivot = getRandomItem(items);
         partition(items, pivot, less, equal, greater);
+
+        if (less.size() == items.size()) {
+            return quickSort(less);
+        } else if (greater.size() == items.size()) {
+            return quickSort(greater);
+        } else if (equal.size() == items.size()) {
+            return equal;
+        }
+
         return catenate(quickSort(less), catenate(quickSort(equal), quickSort(greater)));
     }
 
