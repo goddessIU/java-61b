@@ -115,10 +115,24 @@ public class Board implements WorldState {
         }
 
         Board word1 = (Board) y;
-
-        if (tiles != null ? !tiles.equals(word1.tiles) : word1.tiles != null) {
+        if (tiles == null && word1.tiles == null) {
+            return true;
+        } else if (tiles == null || word1.tiles == null) {
             return false;
+        } else {
+            if (word1.tiles.length != tiles.length) {
+                return false;
+            }
+
+            for (int i = 0; i <tiles.length; i++) {
+                for (int j = 0; j <tiles.length; j++) {
+                    if (tiles[i][j] != word1.tiles[i][j]) {
+                        return false;
+                    }
+                }
+            }
         }
+
         return true;
     }
 
