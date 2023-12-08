@@ -44,12 +44,18 @@ public class CountingSortTester {
     @Test
     public void testBetterWithNonNegative() {
         int[] sortedNonNegative = CountingSort.betterCountingSort(nonNegative);
+        for (int h : sortedNonNegative) {
+            System.out.print(h + " ");
+        }
         assertIsSorted(sortedNonNegative);
     }
 
     @Test
     public void testBetterWithSomeNegative() {
         int[] sortedSomeNegative = CountingSort.betterCountingSort(someNegative);
+        for (int h : sortedSomeNegative) {
+            System.out.print(h + " ");
+        }
         assertIsSorted(sortedSomeNegative);
     }
 

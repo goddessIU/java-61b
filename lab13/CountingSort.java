@@ -78,12 +78,13 @@ public class CountingSort {
         int range = diff + max;
 
         int[] counts = new int[range + 1];
+        int[] narr = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = diff + arr[i];
+            narr[i] = diff + arr[i];
         }
         max = range;
 
-        for (int i : arr) {
+        for (int i : narr) {
             counts[i]++;
         }
 
@@ -92,12 +93,11 @@ public class CountingSort {
         for (int i = 0; i < starts.length; i += 1) {
             starts[i] = pos;
             pos += counts[i];
-            System.out.println(starts[i]);
         }
 
         int[] sorted2 = new int[arr.length];
         for (int i = 0; i < arr.length; i += 1) {
-            int item = arr[i];
+            int item = narr[i];
             int place = starts[item];
             sorted2[place] = item;
             starts[item] += 1;
