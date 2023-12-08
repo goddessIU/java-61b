@@ -16,6 +16,9 @@ public class RadixSort {
      * @return String[] the sorted array
      */
     public static String[] sort(String[] asciis) {
+        for (String str : asciis) {
+            System.out.print(str +" ");
+        }
         int max = Integer.MIN_VALUE;
         String[] sorted = new String[asciis.length];
         for (String str : asciis) {
