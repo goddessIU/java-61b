@@ -16,8 +16,19 @@ public class RadixSort {
      * @return String[] the sorted array
      */
     public static String[] sort(String[] asciis) {
-        // TODO: Implement LSD Sort
-        return null;
+        int max = Integer.MIN_VALUE;
+        String[] sorted = new String[asciis.length];
+        for (String str : asciis) {
+            max = max > str.length() ? max : str.length();
+        }
+        for (int i = 0; i <asciis.length; i++) {
+            sorted[i] = asciis[i];
+        }
+
+        for (int i = max - 1;i >= 0; i--) {
+            sortHelperLSD(sorted, i);
+        }
+        return sorted;
     }
 
     /**
@@ -28,7 +39,47 @@ public class RadixSort {
      */
     private static void sortHelperLSD(String[] asciis, int index) {
         // Optional LSD helper method for required LSD radix sort
-        return;
+        int max = 0;
+        for (int i = 0; i < asciis.length; i++) {
+            int len = asciis[i].length();
+            if (len > index) {
+                int h = asciis[i].charAt(index);
+                max = max >  h ? max : h;
+            }
+        }
+
+        int[] counts = new int[max + 1 + 1];
+        for (int i = 0; i < asciis.length; i++) {
+            int m = -1;
+            if (asciis[i].length() > index) {
+                m = asciis[i].charAt(index);
+            }
+
+            counts[m + 1]++;
+        }
+
+        int[] starts = new int[max + 1 + 1];
+        int pos = 0;
+        for (int i = 0; i < starts.length; i += 1) {
+            starts[i] = pos;
+            pos += counts[i];
+        }
+
+        String[] sorted2 = new String[asciis.length];
+        for (int i = 0; i < asciis.length; i += 1) {
+            int m = -1;
+            if (asciis[i].length() > index) {
+                m = asciis[i].charAt(index);
+            }
+            int item = m + 1;
+            int place = starts[item];
+            sorted2[place] = asciis[i];
+            starts[item] += 1;
+        }
+
+        for (int i = 0; i < asciis.length; i++) {
+            asciis[i] = sorted2[i];
+        }
     }
 
     /**
