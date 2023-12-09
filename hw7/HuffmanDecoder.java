@@ -19,7 +19,6 @@ public class HuffmanDecoder {
 
         char[] chs = new char[chList.size()];
         for (char c : chList) {
-            System.out.print(c);
             chs[i++] = c;
         }
 
