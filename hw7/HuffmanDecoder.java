@@ -14,7 +14,6 @@ public class HuffmanDecoder {
 
             bs = bs.allButFirstNBits(m.getSequence().length());
             chList.add(m.getSymbol());
-            System.out.print(m.getSymbol());
         }
 
         char[] chs = new char[chList.size()];
