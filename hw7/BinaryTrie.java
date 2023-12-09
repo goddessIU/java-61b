@@ -64,10 +64,9 @@ public class BinaryTrie implements Serializable {
 
     public Match longestPrefixMatch(BitSequence querySequence) {
         Node temp = root;
-        String str = querySequence.toString();
         int index = 0;
-        while (temp != null && !temp.isLeaf() && index < str.length()) {
-            if (str.charAt(index) == '0') {
+        while (temp != null && !temp.isLeaf() && index < querySequence.length()) {
+            if (querySequence.bitAt(index) == 0) {
                 temp = temp.left;
             } else {
                 temp = temp.right;

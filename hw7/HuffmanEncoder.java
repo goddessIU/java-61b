@@ -29,6 +29,7 @@ public class HuffmanEncoder {
             bss.add(table.get(c));
         }
         BitSequence ret = BitSequence.assemble(bss);
+        ow.writeObject((Integer)chs.length);
         ow.writeObject(ret);
     }
 }
